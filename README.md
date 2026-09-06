@@ -170,6 +170,14 @@ The app includes some third party components. Details and their license terms ar
 No ROMs are included with this app, and none are linked from here. What you choose to run
 is between you and the law where you live.
 
+## How this app was built
+
+This app was vibe coded. Every line of it was written by AI, mostly Claude with some work
+from Grok, not typed by hand. I directed the work, made the decisions, and tested the
+result on real machines with a real MAME collection, but I did not write the code myself.
+I want that stated plainly here rather than left for anyone to assume one way or the
+other.
+
 ## If you like it
 
 This is free, and it is a hobby project. If you got some use out of it, you can
