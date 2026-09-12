@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.1 - 2026-09-11
+
+Bug fixes.
+
+- MAME now reliably comes to the front when you launch a machine, instead of sometimes
+  opening behind DJCJ Arcade or another app, or coming up with a greyed-out title bar
+  that clicking on it would not fix
+- Typing in the machine and software lists now jumps only to matching names, instead of
+  also searching every other visible column and landing on something unexpected
+- Video snaps no longer keep playing after you launch a machine, which could happen when
+  double-clicking a machine that was not already selected
+
 ## 1.0 - 2026-09-06
 
 First public release.
