@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.0.2 - 2026-09-12
+
+A crash fix, and some changes to make things easier to find.
+
+- Fixed a crash when exporting a collection to a folder you do not have permission to write
+  to, or to a disk with no room left — it now tells you what went wrong instead of quitting
+- The search field now sits directly above the machine list, rather than at the far right of
+  the window away from everything else that acts on that list
+- The channel selector is now labelled "Channel:" and sits on its own bar with the Previous
+  and Next buttons, so it reads as a control you can change rather than a heading
+- The panes can no longer be dragged narrow enough to push a toolbar button over the pane
+  beside it, or to break the channel label apart
+
 ## 1.0.1 - 2026-09-11
 
 Bug fixes.
