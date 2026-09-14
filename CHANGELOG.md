@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.3 - 2026-09-14
+
+One fix.
+
+- A video snap could keep playing behind MAME after launching a machine, so you had to
+  switch back to DJCJ Arcade, pause it, and return to the game. Most likely to happen when
+  the drive holding your files was asleep and took a while to wake up
+
 ## 1.0.2 - 2026-09-12
 
 A crash fix, and some changes to make things easier to find.
