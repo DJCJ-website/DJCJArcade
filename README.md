@@ -1,24 +1,11 @@
 # DJCJ Arcade
 
-A Mac app for browsing and playing your MAME collection.
+A Mac app for browsing and playing your MAME collection, also known as a MAME font end.
 
 ## What this is
 
-MAME can run just about every arcade machine, home computer, and game console ever
-built. Roughly fifty thousand of them, plus another hundred and forty thousand games and
-programs that ran on those machines. The catch is that MAME has no real front door.
-Everything inside it is filed under short names like `sprint2`, `qbert`, and `a2600`, and
-if you don't already know the name of the thing you want, you are not going to find it.
-
-Picture a warehouse holding every arcade cabinet ever made, stacked to the ceiling, in the
-dark, with nothing but a serial number stenciled on the side of each one. That is roughly
-the situation. MAME was built to run the machines, not to help you work out which one you
-feel like playing tonight.
-
-DJCJ Arcade turns the lights on.
-
-It reads the catalog out of your own copy of MAME, so what you see always matches the
-version you actually have installed. You get real names, the year, the manufacturer, box
+DJCJ Arcade generates a catalog from your installed copy of MAME so what you see matches the
+version you actually have installed. You get the machine names, the years, the manufacturers, box
 art, short video clips of the games running, and a clear answer to the question that
 matters most: do I actually have the files to play this one? Then you click Launch.
 
