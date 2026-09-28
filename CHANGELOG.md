@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.1.0 - 2026-09-28
+
+A Setup Wizard, ROM checks for software titles, and a clearer MAME pane.
+
+- A new Setup Wizard walks you through getting started: finding MAME, building the catalog,
+  choosing a working folder, pointing at your machine files, adding Category and Genre, and
+  checking your ROMs. It opens on its own if you haven't built a catalog yet, and you can
+  open it at any time from Get Started in Settings
+- If you start setup and leave it unfinished, the main window shows a "Setup isn't
+  finished" notice with a button to pick up where you left off
+- Setup steps that depend on each other now wait for each other to finish, and the same
+  step can no longer be started twice
+- Software titles now have a ROMs section in their Details channel, like machines do, and
+  Check ROMs in the Machine menu works for a selected software title as well as a machine.
+  Titles that come on several disks are checked in full
+- Every row in a ROMs section now has a Reveal in Finder button, which is greyed out when
+  the file wasn't found
+- The MAME pane in Settings now starts by telling you which MAME DJCJ Arcade is using, and
+  says plainly if it can't find one, if the one it knows about has moved, if it won't run,
+  or if it's missing SDL. Homebrew's copy and any other copy are offered as equal choices,
+  and the Homebrew install steps only appear when there's no MAME at all
+- Expanding or collapsing a parent machine no longer makes the list jump back to whatever
+  was selected. The list only scrolls when it's replaced entirely, for example by a new
+  filter, sort, or search, and then it keeps the selected row where it was on screen
+- Collapsing a parent machine while one of its clones is selected now selects the parent
+
 ## 1.0.3 - 2026-09-14
 
 One fix.
