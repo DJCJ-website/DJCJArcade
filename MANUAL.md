@@ -86,24 +86,67 @@ through each round:
    time for the SDL framework. Click it, and confirm with your password the same way.
 5. MAME will now actually run.
 
-Settings → MAME reports what it finds about SDL, but only checks when that pane loads.
-Since none of the steps above change the path to your MAME executable, the pane won't
-notice on its own that step 4 just happened. Leaving Settings and reopening it forces a
-fresh check, which is a real if slightly clunky way to confirm you're done. We're looking
-at adding a proper way to ask it to check again without having to leave and come back.
+Settings → MAME tells you whether MAME will run and whether SDL was found, but it won't
+notice on its own that you've just approved something in System Settings. Click **Check
+Again** at the top of that pane once you're through step 4, and it will tell you whether
+you're done.
 
-## The first thing you'll see
+## The first thing you'll see: the Setup Wizard
 
-The catalog starts out empty, because DJCJ Arcade doesn't come with one built in. Choose
-**Rebuild Catalog…** from the File menu, or click the button on the empty screen. This
-asks your installed copy of MAME to list everything it supports, reads its software list
-files, and builds a search index from all of it. It takes about twenty seconds and
-produces a database around 58 MB. You'll see progress and a log while it works, and you
-can cancel partway through without losing the catalog you already had, since the whole
-thing runs as one step that either finishes or doesn't happen at all.
+The catalog starts out empty, because DJCJ Arcade doesn't come with one built in, so the
+first time you open the app the **Setup Wizard** opens alongside the main window. It walks
+you through everything DJCJ Arcade needs before your library appears, one step at a time,
+with the steps listed down the left side.
 
-Rebuild Catalog is also what you run again later, whenever you install a newer version
-of MAME and want the app to catch up to it.
+1. **MAME.** The same MAME pane that's in Settings, described below. If DJCJ Arcade found
+   MAME on its own, this step is already ticked and there's nothing to do.
+2. **Build the Catalog.** Asks your installed copy of MAME to list everything it
+   supports, reads its software list files, and builds a search index from all of it. It
+   takes about twenty seconds and produces a database around 58 MB. You don't have to wait
+   for it: start it, and carry on with the next steps while it runs.
+3. **Working Folder.** One folder for MAME's settings and your save files, described
+   under Settings below.
+4. **Machine Files.** Where your ROMs and CHDs live. If your ROM folders are for a
+   different version of MAME than the one you're running, this step warns you, since
+   that's a common reason for machines showing as bad or missing when your files are
+   actually fine.
+5. **Category and Genre.** If you have an EXTRAs pack, this imports its lists that sort
+   every machine into a category and a genre, adding those columns to the machine list and
+   letting smart collections use them. Without an EXTRAs pack there's nothing to import,
+   and the step says so.
+6. **Check What You Have.** One button asks MAME which of your machines and then which of
+   your software titles your files actually cover. When the machine check finishes, the
+   machine list narrows to what you have files for. Nothing is removed: the Availability
+   section of the Filter menu shows everything again whenever you like.
+7. **Artwork and Video.** Optional. Where the EXTRAs and Multimedia packs live. If they
+   sit beside your ROM folders, the Machine Files step may already have found them.
+
+Each step's marker shows where it stands: a number for something still to do, a tick once
+it's done, a spinner while it's running, and an hourglass when it's waiting for another
+step to finish first. That last one means you can start checking your files, or importing
+Category and Genre, before the catalog is finished building, and they'll start on their
+own as soon as it is.
+
+The markers are worked out fresh from your actual settings every time, so anything you set
+up before, in Settings or an earlier run of the wizard, shows as done already. You can
+also close the wizard at any point. Anything it started keeps running, and while setup
+isn't finished, a **Setup isn't finished** bar sits at the top of the main window showing
+what's still running, with a button to open the wizard again where you left off.
+
+If you'd rather find your own way around, **Skip Setup** closes the wizard and stops it
+opening on its own. Whether you skip it or finish it, it's always in the **DJCJ Arcade**
+menu as **Setup Wizard…**, and in Settings → Get Started.
+
+If you already have a catalog, from an earlier version of DJCJ Arcade for instance, the
+wizard doesn't open on its own, and the app starts up just as it always has.
+
+### Rebuilding the catalog later
+
+Whenever you install a newer version of MAME and want the app to catch up to it, choose
+**DJCJ Arcade → Rebuild Catalog…** (Option Shift Command R). You'll see progress and a log
+while it works, and you can cancel partway through without losing the catalog you already
+had, since the whole thing runs as one step that either finishes or doesn't happen at all.
+Your favorites, collections, and play counts are never touched by a rebuild.
 
 ## Settings
 
@@ -113,9 +156,12 @@ Here's what each one does.
 
 ### Get Started
 
-A short numbered walkthrough of the panes that actually matter for getting up and
-running, for when you'd rather be told what order to do things in than go pane by pane
-yourself.
+A short numbered checklist of the panes that actually matter for getting up and running,
+for when you'd rather be told what order to do things in than go pane by pane yourself.
+Each item is ticked off once it's done, with a button that takes you straight to the pane
+that settles it. It's the same set of checks the Setup Wizard uses, so the two always
+agree, and **Open Setup Wizard…** at the top opens the wizard if you'd rather be walked
+through it one step at a time.
 
 ### General
 
@@ -141,16 +187,39 @@ If it's ever wrong, turn it off. You can still type any setting yourself either 
 
 ### MAME
 
-Where your copy of MAME actually lives. If you already have one installed, point at it
-here. If you installed it with Homebrew, there's a button that finds it for you.
-Otherwise, there's a button that opens Terminal and runs Homebrew's own official install
-command where you can watch it happen and enter your Mac's password if it asks, which
-DJCJ Arcade never sees.
+Which copy of MAME DJCJ Arcade is using, and whether anything needs doing about it.
 
-This pane also checks for SDL, the separate software library MAME uses to talk to your
-Mac's display, audio, and controllers. Installing MAME through Homebrew installs the
-matching SDL for you automatically. If you installed MAME some other way, you may need
-to install SDL yourself.
+The pane opens with one sentence answering exactly that. When everything is working, it
+names the version of MAME in use and where it is, with a badge showing whether SDL was
+found, and there's nothing more to do. When it isn't, the sentence tells you which of four
+different problems it is, because each one has a different fix:
+
+- **No MAME found at all.** Install one using the steps at the bottom of the pane, or
+  choose a copy you already have.
+- **MAME isn't where it was.** If it's on a drive that isn't connected, connect it and
+  click **Check Again**. Otherwise, choose a different copy.
+- **MAME is there but won't run.** If you downloaded it yourself, macOS may be blocking
+  it. See [Getting past macOS's security prompts](#getting-past-macoss-security-prompts)
+  above.
+- **MAME is missing SDL.** SDL is the separate software library MAME uses to talk to your
+  Mac's display, audio, and controllers. Installing MAME through Homebrew includes it; if
+  you installed MAME some other way, you may need to install SDL yourself.
+
+**Check Again**, beside that sentence, looks again right away. It's useful after installing
+MAME, connecting a drive, or approving MAME or SDL in System Settings.
+
+Under **Use a different MAME**, Homebrew's copy and any other copy are offered side by
+side as equal choices. **Homebrew's MAME** shows whether Homebrew has one installed, with
+buttons to use it, update it, or install it. **Another copy** takes the path to any MAME
+you have, whether you downloaded it, built it yourself, or got it some other way, and
+**Choose…** lets you pick it in the Finder. Whichever one is in use is marked **In Use**.
+
+If there's no MAME on your Mac at all, a **Don't have MAME yet?** section at the bottom
+gives you two steps. The first installs Homebrew, a free package manager for the Mac, by
+opening Terminal and running Homebrew's own official install command, where you can watch
+it happen and enter your Mac's password if it asks, which DJCJ Arcade never sees. The
+second installs MAME through Homebrew, along with the SDL it needs. Once DJCJ Arcade
+has found a copy of MAME, that section goes away.
 
 ### Working Folder
 
@@ -249,8 +318,8 @@ a Game Boy for instance, can be opened up to show everything that runs on them. 
 click in, or use the arrow next to its name, and you get that platform's own software
 list instead of one line in the machine table.
 
-The search box in the top right finds things by name across the whole catalog. Command F
-jumps straight to it.
+The search box, just above the list, finds things by name across the whole catalog.
+Command F jumps straight to it.
 
 ## Knowing what you actually have
 
@@ -259,12 +328,13 @@ own. Every machine and title has a **Have** column, and a filter that shows only
 things you can actually play right now.
 
 To fill that column in, MAME needs to check your files against what it expects for each
-machine, which the app calls an audit. **File → Audit Machines** and **File → Audit
-Software Collection** are two separate operations, run separately, because auditing
+machine, which the app calls an audit. **DJCJ Arcade → Audit Machines** and **DJCJ Arcade →
+Audit Software Collection** are two separate operations, run separately, because auditing
 software takes a good deal longer than auditing machines and not everyone wants to pay
-that cost every time. For any single machine, its own Machine Details screen shows you
-exactly which files it needs, which ones were found, where each one was found, and
-whether MAME itself considers the result good.
+that cost every time. For any single machine or software title, its own details channel
+shows you exactly which files it needs, which ones were found, where each one was found,
+and whether MAME itself considers the result good. The Setup Wizard's Check What You Have
+step runs both audits for you, one after the other.
 
 A cartridge based system like the Atari 2600 or the Genesis doesn't really have a ROM to
 verify the way an arcade board does, so its availability comes from whether you own real
@@ -308,6 +378,16 @@ or with Previous Channel and Next Channel from the Channels menu.
 player count, driver status, your Have status, how many times you've played it, and its
 category and genre if the EXTRAs pack has them. Underneath that is the ROM checklist
 described above, with a Check ROMs button to audit that one machine on the spot.
+
+Software titles have the same checklist on their own **Software Details** channel: every
+file the title needs, across every disk or cartridge it came on, whether each one was
+found, and MAME's verdict on it. Check ROMs there only checks that one title, so it takes
+a second or two rather than auditing the whole software list it belongs to.
+
+Every row in the checklist, for machines and software alike, has a **Reveal in Finder**
+button that shows you the file, or the archive it's inside, in the Finder. Hold the
+pointer over it to see which archive that is. When a file wasn't found, the button is
+there but greyed out, so the rows stay lined up.
 
 Most of the other channels come from the EXTRAs and Multimedia packs: photographs of the
 cabinet, marquee, flyer, control panel, and PCB; screenshots of the title screen, game
@@ -491,7 +571,8 @@ one isn't already sitting in your EXTRAs pack.
 Finder.
 
 **Check ROMs…** (Option Command V) runs the same file-by-file audit as the Check ROMs
-button on Machine Details, without leaving the list.
+button on Machine Details or Software Details, for whichever machine or software title is
+selected, without leaving the list.
 
 ## Exporting a collection
 
@@ -503,13 +584,13 @@ friend, copy to a Raspberry Pi, or diff against your main library later.
 
 ## Verify Database and backups
 
-**File → Verify Database…** checks the catalog file itself for the kinds of problem a
+**DJCJ Arcade → Verify Database…** checks the catalog file itself for the kinds of problem a
 bug could theoretically leave behind: broken links between tables, a collection nested
 inside itself, a smart collection with rules that no longer make sense, duplicate
 collection names, and a few others. Most people will never need this, and it exists so
 that if something ever looks wrong, there's a real answer rather than a guess.
 
-**File → Back Up or Restore Database…** saves a copy of your whole catalog, your tags,
+**DJCJ Arcade → Back Up or Restore Database…** saves a copy of your whole catalog, your tags,
 your collections, your play counts, everything, to a file of your choosing, and can
 restore from one later. Worth doing before a big change you're not sure about, or just
 now and then for peace of mind.
@@ -525,7 +606,7 @@ now and then for peace of mind.
 | Shift Command R | Reveal the selected item's files in Finder |
 | Shift Command C | Copy Command Line |
 | Shift Command D | Download Manual |
-| Option Command V | Check ROMs for the selected machine |
+| Option Command V | Check ROMs for the selected machine or software title |
 | Shift Command A | Audit Machines |
 | Option Shift Command A | Audit Software Collection |
 | Option Shift Command R | Rebuild Catalog |

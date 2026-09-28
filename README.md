@@ -38,9 +38,9 @@ The catalog lists everything MAME supports, which is not the same as everything 
 DJCJ Arcade tracks the difference.
 
 There is a Have column, and a filter to show only the things you can really play. You can
-ask MAME to audit your whole collection, and for any single machine you can see exactly
-which files it needs, which ones you have, where each one was found, and whether MAME
-considers it good.
+ask MAME to audit your whole collection, and for any single machine or software title you
+can see exactly which files it needs, which ones you have, where each one was found, and
+whether MAME considers it good, with a button beside each file to show it in the Finder.
 
 ![Machine details, with a file by file ROM check](screenshots/screenshot-machine-details-01.png)
 
@@ -134,15 +134,31 @@ expected.
 
 ## Setting it up
 
-The first time you open it, the catalog is empty. Choose Rebuild Catalog from the File
-menu and it will ask MAME what it supports and build its own index. That takes about
-twenty seconds.
+The first time you open it, the Setup Wizard opens and walks you through everything, one
+step at a time:
 
-After that, point it at your files in Settings: where your ROMs live, your CHDs, the
-EXTRAs pack if you have it, and a working folder for MAME's own configuration. If your
-ROM folders have the set version in the name, something like `MAME 0.289 ROMs (merged)`,
-the app watches for newer folders sitting next to them and offers to switch when you
-upgrade, rather than silently breaking.
+1. **MAME.** Finds the copy you have, or helps you install one.
+2. **Build the Catalog.** Asks MAME what it supports and builds the app's own index. It
+   takes about twenty seconds, and you can carry on with the next steps while it runs.
+3. **Working Folder.** One folder for MAME's own configuration and your save files.
+4. **Machine Files.** Where your ROMs and CHDs live. If you downloaded a collection, one
+   button fills them all in at once.
+5. **Category and Genre.** Imported from the EXTRAs pack, if you have it.
+6. **Check What You Have.** Asks MAME which of your machines and software titles you
+   actually have the files for.
+7. **Artwork and Video.** Optional. The EXTRAs and Multimedia packs.
+
+Each step is ticked off as it's done, including anything you set up before. Steps that
+need another one to finish first, like checking your files before the catalog is built,
+wait for it and start on their own. You can close the wizard at any
+point and things keep running. If you close it before you're finished, a reminder sits at
+the top of the main window until you are. **Skip Setup** closes it for good if you'd
+rather find your own way around. The wizard is always in the DJCJ Arcade menu, and
+everything it sets is also in Settings.
+
+If your ROM folders have the set version in the name, something like
+`MAME 0.289 ROMs (merged)`, the app watches for newer folders sitting next to them and
+offers to switch when you upgrade, rather than silently breaking.
 
 ## Licenses and credits
 

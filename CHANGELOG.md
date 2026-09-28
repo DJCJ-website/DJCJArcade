@@ -7,7 +7,7 @@ A Setup Wizard, ROM checks for software titles, and a clearer MAME pane.
 - A new Setup Wizard walks you through getting started: finding MAME, building the catalog,
   choosing a working folder, pointing at your machine files, adding Category and Genre, and
   checking your ROMs. It opens on its own if you haven't built a catalog yet, and you can
-  open it at any time from Get Started in Settings
+  open it at any time from the DJCJ Arcade menu or from Get Started in Settings
 - If you start setup and leave it unfinished, the main window shows a "Setup isn't
   finished" notice with a button to pick up where you left off
 - Setup steps that depend on each other now wait for each other to finish, and the same
