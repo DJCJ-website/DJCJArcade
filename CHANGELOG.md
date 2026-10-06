@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.1.1 - 2026-10-05
+
+Hide BIOS sets, choose which columns show, and see your folders when adding to a collection.
+
+- The Filter menu has a new Show BIOS option. BIOS sets, the system firmware that groups of
+  machines share, used to sit in the machine list looking like games. They're now hidden
+  unless you turn Show BIOS on
+- You can now choose which columns the machine and software lists show. Right-click any
+  column header and tick or untick the columns you want, or use View → Machine List Columns
+  and View → Software List Columns. A column you hide comes back where it was when you show
+  it again, and Restore Default Columns puts every column back the way it started
+- The "Show icons in the machine list" checkbox in Settings → Assets is gone. Icons now have
+  their own column, which you show or hide like any other. If you had icons turned on, they
+  stay on
+- When you right-click a machine or a software title, the collections you can add it to are
+  now laid out like the sidebar, with each folder as a heading and its collections indented
+  beneath it. Machine → Add to Collection groups them by folder as well
+- New installs start with an Enable Cheats Launch Decision, off until you tick it. The
+  cheats come from the cheat.7z file in your EXTRAs pack
+
 ## 1.1.0 - 2026-09-28
 
 A Setup Wizard, ROM checks for software titles, and a clearer MAME pane.
