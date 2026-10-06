@@ -6,20 +6,23 @@ particular screen does, or why something works the way it does.
 
 ## Before you begin
 
-You need three things installed before DJCJ Arcade is useful for anything beyond
-browsing.
+DJCJ Arcade needs three things before it's useful for anything beyond browsing.
 
 **MAME itself.** DJCJ Arcade doesn't include it. It reads MAME's catalog and hands the
-actual work of running a machine over to MAME. The easiest way to get it on a Mac is
-with [Homebrew](https://brew.sh):
+actual work of running a machine over to MAME. You don't need to install it before you
+start: the first step of the [Setup Wizard](#the-first-thing-youll-see-the-setup-wizard)
+looks for a copy on your Mac, and if there isn't one, installs it for you through
+[Homebrew](https://brew.sh), a free package manager for the Mac. If you'd rather do that
+yourself, it's one command in Terminal:
 
 ```
 brew install mame
 ```
 
-You can also install MAME any other way you like and just point DJCJ Arcade at it. If
-you're on an Intel Mac, see [Running on an Intel Mac](#running-on-an-intel-mac) below
-before you run that command, since Homebrew's version of MAME no longer supports Intel.
+Either way works on both Apple Silicon and Intel Macs. You can also use a copy of MAME
+from anywhere else, one you downloaded or built yourself, and just point DJCJ Arcade at
+it. See [Using a MAME from somewhere other than Homebrew](#using-a-mame-from-somewhere-other-than-homebrew)
+below if you do.
 
 **Your own ROM files.** None are included with this app, and none ever will be. You can
 browse the whole catalog with nothing installed, so this isn't required just to look
@@ -36,41 +39,44 @@ and drag DJCJ Arcade into your Applications folder. The app is signed and notari
 it opens normally. macOS still asks you to confirm the first time you run anything
 downloaded from the internet, which is expected and not specific to this app.
 
-## Running on an Intel Mac
+There are three downloads. The plain one is universal, running natively on both Apple
+Silicon and Intel Macs, so if you're not sure which to pick, pick that one. The Apple
+Silicon and Intel downloads are smaller, each holding only the version for that kind of
+Mac.
 
-DJCJ Arcade itself runs natively on an Intel Mac. The build in Releases is universal, so
-nothing about DJCJ Arcade is any different for you. Getting MAME itself running takes a
-few extra steps, though, since the MAME project has moved on from Intel faster than this
-app has.
+### On an Intel Mac
 
-### Getting MAME
+DJCJ Arcade itself runs natively on an Intel Mac, and installing MAME through Homebrew
+works there too, from the Setup Wizard or from Terminal. Expect it to take a good deal
+longer than on Apple Silicon, though. Homebrew often has no ready-made MAME for Intel Macs,
+so it builds MAME from its source code on your Mac instead, and MAME is a very large
+program to build. That's normal: leave the install running until it finishes.
 
-Homebrew's own MAME formula has dropped Intel support, so `brew install mame`, the easy
-path recommended earlier in this manual, will not get you a working copy on an Intel Mac.
-You'll need to find a build of MAME made for Intel Macs somewhere else, or build one
-yourself from MAME's own source, and just point DJCJ Arcade at it.
+## Using a MAME from somewhere other than Homebrew
 
-This manual isn't going to point you to a specific build to download. Anything named here
-would be out of date within months, and if the easy Homebrew path doesn't work for your
-Mac, you're already past the point a document like this can safely hold your hand through.
-Look for one the way you would for any software from outside official channels, and be
-skeptical the way you would be anywhere else.
+Any build of MAME works, whether you downloaded it, built it yourself, or got it some other
+way. Point DJCJ Arcade at it in the Setup Wizard's MAME step, or in Settings → MAME.
 
-Whatever build you end up with, take note of its version number. Your ROM sets are tied to
-a MAME version too, and Settings → Machine Files is already built to notice a mismatch
-there: a ROM set built for a much newer MAME than the one you're actually running is a
-common cause of things auditing as Imperfect or Bad that would otherwise check out fine.
+Take note of its version number. Your ROM sets are tied to a MAME version too, and a ROM
+set built for a much newer MAME than the one you're actually running is a common cause of
+things auditing as Imperfect or Bad that would otherwise check out fine. The Setup
+Wizard's Machine Files step warns you when the two don't match.
+
+### SDL
+
+MAME uses a separate library called SDL to talk to your screen, audio, and controllers.
+Installing MAME through Homebrew installs a matching SDL for you as part of the same step.
+Going around Homebrew means installing SDL yourself too, from its own project's
+[release page](https://github.com/libsdl-org/SDL/releases). Settings → MAME tells you if
+SDL is missing.
 
 ### Getting past macOS's security prompts
 
-Two separate pieces of software need your permission here, since neither one is notarized
-by Apple the way DJCJ Arcade itself is: the MAME executable, and SDL, the library MAME
-uses to talk to your screen, audio, and controllers. Installing MAME through Homebrew
-normally installs a matching SDL for you as part of the same step; going around Homebrew
-means installing SDL yourself too, from its own project's
-[release page](https://github.com/libsdl-org/SDL/releases).
+A MAME you downloaded yourself, and the SDL that goes with it, aren't notarized by Apple
+the way DJCJ Arcade is, so macOS won't run either one until you approve it. A MAME
+installed through Homebrew doesn't need any of this.
 
-Expect this in two rounds, not one, and expect it to look like it failed the first time
+Expect it in two rounds, not one, and expect it to look like it failed the first time
 through each round:
 
 1. Try to run MAME. It won't open, with nothing more helpful than that.
@@ -88,8 +94,7 @@ through each round:
 
 Settings → MAME tells you whether MAME will run and whether SDL was found, but it won't
 notice on its own that you've just approved something in System Settings. Click **Check
-Again** at the top of that pane once you're through step 4, and it will tell you whether
-you're done.
+Again** in that pane once you're through step 4, and it will tell you whether you're done.
 
 ## The first thing you'll see: the Setup Wizard
 
@@ -99,7 +104,8 @@ you through everything DJCJ Arcade needs before your library appears, one step a
 with the steps listed down the left side.
 
 1. **MAME.** The same MAME pane that's in Settings, described below. If DJCJ Arcade found
-   MAME on its own, this step is already ticked and there's nothing to do.
+   MAME on its own, this step is already ticked and there's nothing to do. If there's no
+   MAME on your Mac, this is where you install it, without going near Terminal.
 2. **Build the Catalog.** Asks your installed copy of MAME to list everything it
    supports, reads its software list files, and builds a search index from all of it. It
    takes about twenty seconds and produces a database around 58 MB. You don't have to wait
@@ -165,14 +171,15 @@ through it one step at a time.
 
 ### General
 
-Three unrelated settings that live here because they didn't belong anywhere else.
+A few unrelated settings that live here because they didn't belong anywhere else.
 
 MAME sometimes prints a warning on a launch that otherwise runs fine, and DJCJ Arcade
 can keep a record of those, plus any launch that fails outright, so you don't have to
 run MAME from Terminal just to see what it's complaining about. That's the **Log**
 section: turn it on, set how big it's allowed to grow before old entries get trimmed,
 and choose whether it only captures warnings at startup or for the whole time you're
-playing.
+playing. **Search Engine** picks which site the search button on each log entry uses, for
+looking up a warning you don't recognize.
 
 **High Scores** turns on one of MAME's own built in plugins that remembers your scores
 between sessions. If you've already set up your own list of plugins by hand, this gets
@@ -210,16 +217,26 @@ MAME, connecting a drive, or approving MAME or SDL in System Settings.
 
 Under **Use a different MAME**, Homebrew's copy and any other copy are offered side by
 side as equal choices. **Homebrew's MAME** shows whether Homebrew has one installed, with
-buttons to use it, update it, or install it. **Another copy** takes the path to any MAME
+buttons to use it, update it to Homebrew's latest version, or install it. **Another copy** takes the path to any MAME
 you have, whether you downloaded it, built it yourself, or got it some other way, and
 **Choose…** lets you pick it in the Finder. Whichever one is in use is marked **In Use**.
 
 If there's no MAME on your Mac at all, a **Don't have MAME yet?** section at the bottom
-gives you two steps. The first installs Homebrew, a free package manager for the Mac, by
-opening Terminal and running Homebrew's own official install command, where you can watch
-it happen and enter your Mac's password if it asks, which DJCJ Arcade never sees. The
-second installs MAME through Homebrew, along with the SDL it needs. Once DJCJ Arcade
-has found a copy of MAME, that section goes away.
+gives you two steps:
+
+1. **Install Homebrew…**, if you don't have it already. This opens Terminal and runs
+   Homebrew's own official install command, where you can watch it happen and enter your
+   Mac's password if it asks, which DJCJ Arcade never sees. Click **Check Again** when it's
+   done.
+2. **Install MAME.** This runs `brew install mame` for you, inside DJCJ Arcade, in a
+   window that shows its progress, and installs the SDL that MAME needs along with it.
+   When it finishes, DJCJ Arcade starts using that copy straight away. It can take a few
+   minutes on Apple Silicon and a good deal longer on an Intel Mac, where Homebrew often
+   builds MAME from its source code; see [On an Intel Mac](#on-an-intel-mac).
+
+Once DJCJ Arcade has found a copy of MAME, that section goes away. **Update** under
+Homebrew's MAME works the same way, running `brew upgrade mame` in a progress window. After
+updating MAME, rebuild the catalog so DJCJ Arcade catches up to it.
 
 ### Working Folder
 
@@ -366,6 +383,11 @@ BIOS, Runnable, Has Software List, Has Clones, Driver Source File, Plays, Last P
 and Collection. So "everything Atari made in the seventies and eighties" is a rule on
 Manufacturer and a rule on Year, matched together.
 
+To add something to a collection, drag it onto the collection in the sidebar, or
+right-click it and choose from the collections listed there. **Machine → Add to
+Collection** does the same from the menu bar. Both lists are laid out like the sidebar,
+with each folder as a heading and its collections indented beneath it.
+
 A folder's own count includes everything nested inside it, including any smart
 collections inside it, counted once even if a machine happens to belong to more than one
 collection that folder contains.
@@ -415,11 +437,11 @@ the list to do it, and the app always shows you what's about to run before it ru
 
 Next to the Launch button is a row of checkboxes and dropdowns, described fully in the
 next section. What you see there depends entirely on what you've set up in Settings →
-Launch Decisions, which starts out with a couple of common ones already in place and
+Launch Decisions, which starts out with a handful of common ones already in place and
 grows however you want from there.
 
-If you select a copy of MAME's history that has more than one disk drive, like an old
-home computer with a floppy drive or two and maybe a hard disk, you can save a
+If you select a machine that has more than one disk drive, like an old home computer
+with a floppy drive or two and maybe a hard disk, you can save a
 **Loadout**: which disk goes in which drive, saved together and named. Save as many as
 you like for one machine. Launching directly applies your saved Loadout automatically:
 no prompt at all if you've only saved one, or a quick choice if you've saved more than
@@ -441,11 +463,24 @@ name, choose whether it's a **Checkbox** or a **Dropdown**, and decide what comm
 text gets added when it's on versus off (a dropdown works the same way, just with more
 than two choices instead of only two).
 
-Two start out already there for you: **Fullscreen**, and **Artwork**. Beyond those two,
-what you see is entirely up to you. As an example, one setup might add a Checkbox called
-Uneven Stretch that writes `-unevenstretch` when ticked and `-nounevenstretch` when not,
-and a Dropdown called Art offering Full Art, Overlay Only, No Art, and a fourth option
-that defers to whatever your regular settings already say.
+A new install starts with seven, as examples of what's possible as much as anything,
+and you can change or delete any of them:
+
+- **Antialiased Resizing**, off. Smooths the picture when MAME scales it up.
+- **Fullscreen**, off. Runs MAME full screen rather than in a window.
+- **Maximize**, on. Opens MAME's window as large as your screen allows.
+- **Uneven Stretch**, on. Lets the picture stretch to fill the window rather than keeping
+  to whole-number multiples of its original size. It writes `-unevenstretch` when ticked
+  and `-nounevenstretch` when not.
+- **Art**, a Dropdown offering Full Art, Overlay Only (the starting choice), No Art, and
+  Defer to ini, which leaves the question to whatever your regular settings already say.
+- **CRT Shader**, off. Draws the picture the way an old tube screen would, scanlines and
+  all.
+- **Enable Cheats**, off. Turns on MAME's cheat menu, using the `cheat.7z` file from your
+  EXTRAs pack. Without an EXTRAs pack, MAME simply has no cheats to offer.
+
+If you started using DJCJ Arcade before these defaults existed, you keep whatever you
+already had, and nothing is added behind your back.
 
 While you're editing one of these, a row of buttons above the list, things like ROMs,
 Working Folder, Artwork Path, and Config Directory, let you click a real path into your
@@ -611,6 +646,14 @@ now and then for peace of mind.
 | Command L | Launch the selected machine or title |
 | Command O | Open With, when a title runs on more than one machine |
 | Command F | Jump to the search box |
+| Command G / Shift Command G | Find Next / Find Previous |
+| Command 1 | All Machines |
+| Command 2 | Favorites |
+| Command ] | Show the selected machine's software |
+| Command [ | Back |
+| Command Left Arrow / Right Arrow | Previous Channel / Next Channel |
+| Shift Command E | Choose which channels are turned on |
+| Option Command P | Parents Only |
 | Command Comma | Open Settings |
 | Shift Command R | Reveal the selected item's files in Finder |
 | Shift Command C | Copy Command Line |
@@ -622,6 +665,10 @@ now and then for peace of mind.
 | Command R | Refresh EXTRAs Folder Data |
 | Shift Command V | Verify Database |
 | Shift Command B | Back Up or Restore Database |
+| Shift Command N | New Collection |
+| Option Command N | New Smart Collection |
+| Shift Command L | Show the Log |
+| Control Command D | Switch between light and dark |
 
 Full menus have more, this is just the short list of the ones you'll reach for most.
 

@@ -105,12 +105,17 @@ do not have connected.
 ## What you need before this is useful
 
 **MAME itself.** DJCJ Arcade doesn't include it and doesn't replace it. It reads MAME's
-catalog and hands the actual work of running a machine over to MAME. The easiest way to
-install it on a Mac is with [Homebrew](https://brew.sh):
+catalog and hands the actual work of running a machine over to MAME. You don't have to
+install it first: if there's no MAME on your Mac, the Setup Wizard installs it for you
+through [Homebrew](https://brew.sh). If you'd rather do it yourself, it's one command:
 
 ```
 brew install mame
 ```
+
+That works on Intel Macs too, though it takes longer there, since Homebrew often builds
+MAME from source on an Intel Mac. Any other build of MAME works as well; just point DJCJ
+Arcade at it.
 
 **Your own ROMs.** None are included here, and none ever will be. The app will happily
 show you the whole catalog with nothing installed, so you can browse fifty thousand
