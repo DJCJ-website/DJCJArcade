@@ -249,8 +249,9 @@ version.
 
 Where the EXTRAs pack and the separate Multimedia pack live, plus a summary of exactly
 what each one gives you: the pictures and manuals for machines and software, the video
-snaps, and whether categories and history write-ups are available. There's also a toggle
-for showing small icons next to each machine in the list.
+snaps, and whether categories and history write-ups are available. If the pack has small
+icons for each machine, they appear in the machine list's Icon column, which you can show
+from View → Machine List Columns.
 
 ### Custom Files
 
@@ -310,8 +311,16 @@ how many of each are currently in view.
 Click any column header to sort by it, and you can add a second sort underneath the
 first, so you might sort by manufacturer and then by year within each manufacturer. The
 Filter menu narrows the list down: hide clones, hide machines with an imperfect driver,
-hide mechanical machines, and so on. Filtering never permanently removes anything from
+hide mechanical machines, hide BIOS sets (the system firmware that groups of machines
+share), and so on. Filtering never permanently removes anything from
 the catalog. It's about what's showing right now, not what exists.
+
+Drag a column header to move that column, or drag its edge to make it wider or narrower.
+To choose which columns show at all, right-click any column header and tick or untick
+them, or use View → Machine List Columns (and View → Software List Columns for a software
+list). A column you hide comes back exactly where it was when you show it again, and
+Restore Default Columns in either menu puts every column back the way it started. The Name
+column always stays, so you can always tell which machine is which.
 
 Machines that are really a whole platform rather than one single game, an Atari 2600 or
 a Game Boy for instance, can be opened up to show everything that runs on them. Double
