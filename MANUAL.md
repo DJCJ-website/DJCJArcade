@@ -32,6 +32,14 @@ around, but you can only play what you actually have.
 collection of box art, video clips, manuals, and other reference material. It's
 optional. The app works fine without it, and looks a lot better with it.
 
+Two more things are optional, and only worth reading about if you already use them:
+
+- **HBMAME**, a version of MAME with thousands of homebrew games and hacks that regular
+  MAME doesn't include. DJCJ Arcade can install it for you too, and works best with it in
+  a [library](#libraries) of its own.
+- **RetroArch**, if you'd like to run some games in it instead of MAME. See
+  [Launching in RetroArch](#launching-in-retroarch).
+
 ## Installing
 
 Download the latest version from this repository's Releases page, open the disk image,
@@ -115,7 +123,8 @@ with the steps listed down the left side.
 4. **Machine Files.** Where your ROMs and CHDs live. If your ROM folders are for a
    different version of MAME than the one you're running, this step warns you, since
    that's a common reason for machines showing as bad or missing when your files are
-   actually fine.
+   actually fine. It compares the version numbers themselves, so a folder for 0.289 and
+   a MAME that calls itself 0.289.4 count as a match.
 5. **Category and Genre.** If you have an EXTRAs pack, this imports its lists that sort
    every machine into a category and a genre, adding those columns to the machine list and
    letting smart collections use them. Without an EXTRAs pack there's nothing to import,
@@ -144,7 +153,9 @@ opening on its own. Whether you skip it or finish it, it's always in the **DJCJ 
 menu as **Setup Wizard…**, and in Settings → Get Started.
 
 If you already have a catalog, from an earlier version of DJCJ Arcade for instance, the
-wizard doesn't open on its own, and the app starts up just as it always has.
+wizard doesn't open on its own, and the app starts up just as it always has. A new
+[library](#libraries) starts empty, so the wizard opens for it, and walks you through
+setting that library up from scratch.
 
 ### Rebuilding the catalog later
 
@@ -152,7 +163,8 @@ Whenever you install a newer version of MAME and want the app to catch up to it,
 **DJCJ Arcade → Rebuild Catalog…** (Option Shift Command R). You'll see progress and a log
 while it works, and you can cancel partway through without losing the catalog you already
 had, since the whole thing runs as one step that either finishes or doesn't happen at all.
-Your favorites, collections, and play counts are never touched by a rebuild.
+Your favorites, collections, and play counts are never touched by a rebuild. If you have
+more than one [library](#libraries), a rebuild only affects the one that's open.
 
 ## Settings
 
@@ -219,7 +231,16 @@ Under **Use a different MAME**, Homebrew's copy and any other copy are offered s
 side as equal choices. **Homebrew's MAME** shows whether Homebrew has one installed, with
 buttons to use it, update it to Homebrew's latest version, or install it. **Another copy** takes the path to any MAME
 you have, whether you downloaded it, built it yourself, or got it some other way, and
-**Choose…** lets you pick it in the Finder. Whichever one is in use is marked **In Use**.
+**Choose…** lets you pick it in the Finder. You can choose an app, such as HBMAME.app, as
+well as a plain program file: DJCJ Arcade finds the real program inside it, and the SDL
+library that comes with it. Whichever one is in use is marked **In Use**.
+
+**Homebrew's HBMAME** works the same way as Homebrew's MAME: **Use This** if it's
+installed, **Update**, or **Install HBMAME**, which runs the install in a progress window.
+HBMAME comes from a Homebrew collection kept by estefan, who made HBMAME available for the
+Mac. If you choose HBMAME in a library whose catalog was built from regular MAME, DJCJ
+Arcade suggests **Create an HBMAME Library** instead, since switching would replace that
+catalog. **Use in This Library** switches anyway.
 
 If there's no MAME on your Mac at all, a **Don't have MAME yet?** section at the bottom
 gives you two steps:
@@ -233,6 +254,11 @@ gives you two steps:
    When it finishes, DJCJ Arcade starts using that copy straight away. It can take a few
    minutes on Apple Silicon and a good deal longer on an Intel Mac, where Homebrew often
    builds MAME from its source code; see [On an Intel Mac](#on-an-intel-mac).
+
+While an install or update runs, its progress window shows Homebrew's own output as it
+goes. **Cancel** stops it straight away, though anything Homebrew had already finished
+installing, like some of MAME's dependencies, stays installed. **Copy Details** copies
+Homebrew's output, for looking up an error or sending it to someone.
 
 Once DJCJ Arcade has found a copy of MAME, that section goes away. **Update** under
 Homebrew's MAME works the same way, running `brew upgrade mame` in a progress window. After
@@ -248,10 +274,17 @@ If you put this folder on an external drive alongside your ROMs, you can carry t
 drive to a different Mac, point MAME at the same folder there, and everything picks up
 exactly where it left off.
 
+A button sets the folder to your emulator's own usual location, and says which emulator
+that is: **Use MAME's Default Location**, or **Use HBMAME's Default Location** in a library
+that uses HBMAME, so each one keeps its settings in its own place. A new library starts
+with a Working Folder inside the library's own folder.
+
 ### Machine Files
 
 Where your ROMs and CHDs live: separate fields for ROMs, CHDs, software list ROMs,
-software list CHDs, and loose software. If you have a downloaded MAME collection sitting
+software list CHDs, loose software, and BIOS & Device ROMs. That last one is optional:
+some ROM sets keep the BIOS and device files that many machines share in a folder of their
+own, while MAME's own sets keep them with the other ROMs. Each field takes one folder. If you have a downloaded MAME collection sitting
 in one folder, there's a **Set Up From Folder…** button that finds and fills in
 everything it recognizes inside it, which you can still adjust afterward. Each field
 shows the version number DJCJ Arcade found in the folder name, and a Rescan button
@@ -270,6 +303,26 @@ snaps, and whether categories and history write-ups are available. If the pack h
 icons for each machine, they appear in the machine list's Icon column, which you can show
 from View → Machine List Columns.
 
+DJCJ Arcade looks for each kind of artwork under the names packs actually use, including
+either spelling where packs differ, like `snap.zip` and `snaps.zip`. A zip works whether
+its pictures sit at the top or inside one folder, which is what the Finder's Compress makes,
+and pictures can be PNG or JPEG. Anything it still can't find is marked **Not Found**, with
+a note saying why and a **Set Location…** button to point at it yourself.
+
+### Assets (Advanced)
+
+Every kind of asset DJCJ Arcade supports, all thirty-seven of them, each with its own
+location. Each one starts on **Automatic**, which means DJCJ Arcade looks for it inside
+your EXTRAs and Multimedia folders, and shows you where it looks. If an asset lives
+somewhere else, or Automatic isn't finding it, **Choose…** points at the exact zip or
+folder. **Automatic** puts a single asset back, and **Set All to Automatic…** clears every
+location you've chosen here. **Change in Assets…** takes you back to the EXTRAs and
+Multimedia folders themselves.
+
+Whatever you choose here is what every part of the app uses: the viewer pane, the Assets
+pane, and the artwork, cheat, and sample folders DJCJ Arcade hands to MAME. Exporting a
+collection to a zip still reads the standard EXTRAs layout.
+
 ### Custom Files
 
 MAME can read several kinds of file that change how it looks or behaves: controller
@@ -284,14 +337,16 @@ detail below, and in what order. Every channel has a checkbox and a coverage num
 which tells you how many of your machines or software titles actually have that content
 before you bother turning it on.
 
-The full list, for machines: Video Snap, Snapshot, History, Launch Codes, Machine
+The full list, for machines: Video Snap, Snapshot, History, MAME Launch Codes, RetroArch
+Launch Codes, Machine
 Details, Title Screen, Cabinet, Marquee, Flyer, Control Panel, PCB, Logo, Boss, Ending,
 Game Over, How To Play, High Score Screen, Select Screen, Versus Screen, Warning Screen,
 Art Preview, Manual, MAME Info, Devices, High Scores, Setup, Commands, Soundtrack, and
 Loadouts.
 
-For software titles, the list is shorter: Launch Codes, Video Snap, Snapshot, Cover Art,
-Software Details, Title Screen, Manual, and MAME Info.
+For software titles, the list is shorter: MAME Launch Codes, RetroArch Launch Codes,
+Video Snap, Snapshot, Cover Art, Software Details, Title Screen, Manual, and MAME Info.
+RetroArch Launch Codes only appears while RetroArch support is turned on.
 
 Drag any of them into the order you want. The order controls what the Previous Channel
 and Next Channel keyboard shortcuts cycle through. You can also set what happens when
@@ -302,6 +357,11 @@ for machines and software titles.
 
 Covered in its own section below, since it's really a feature in its own right rather
 than a simple settings pane.
+
+### RetroArch
+
+Off until you turn on **Enable RetroArch support**. Covered in
+[Launching in RetroArch](#launching-in-retroarch) below.
 
 ### Setup Check
 
@@ -322,6 +382,56 @@ last had selected for whatever is currently highlighted in the middle.
 
 At the top of the list, a green pill switches between Machines and Software, and shows
 how many of each are currently in view.
+
+At the bottom of the sidebar, a strip shows which [library](#libraries) is open. Click it
+to switch to another, or to manage your libraries.
+
+## Libraries
+
+A library is a separate world inside DJCJ Arcade, with its own catalog, collections,
+favorites, play history, and settings, including its own emulator, file locations,
+Working Folder, and RetroArch setup. Only one is open at a time. Most people only ever
+need one, but libraries are the way to keep things that shouldn't mix apart: MAME and
+HBMAME, for instance, or two different versions of MAME with ROM sets to match.
+
+If you used DJCJ Arcade before libraries existed, everything you had is now your first
+library, called Default, exactly where it always was. Nothing was moved or copied.
+
+The **Libraries** window lists every library, with the emulator version each one's catalog
+was built from. Open it from **DJCJ Arcade → Switch Library…**, from the library strip at
+the bottom of the sidebar, or by holding **Option** while DJCJ Arcade opens. Choose a
+library to open it, and DJCJ Arcade restarts into it. If the library DJCJ Arcade last had
+open can't be found, say because it's on a drive that isn't connected, the Libraries window
+opens instead, rather than quietly opening a different one.
+
+**New Library…** asks for a name, where to put the library's folder, and which emulator it
+uses: MAME or HBMAME from Homebrew, each with an Install button if you don't have it yet,
+or **I'll choose one later**. A new library starts empty and opens right away, and its
+Setup Wizard takes it from there. Nothing is copied from another library.
+
+**Open Existing…** adds a library folder that isn't in your list yet, such as one you made
+on another Mac. Each library folder holds everything that library needs, its settings
+included, so you can move it, copy it to another Mac, or keep it on an external drive.
+The one exception is the original Default library from before libraries existed, which
+keeps its files where they always were; Convert to Library Folder, below, gives it a
+folder of its own.
+
+Under **More**, for whichever library is selected:
+
+- **Rename…** changes its name.
+- **Show in Finder** shows its folder.
+- **Remove from List** takes it out of the list without touching its folder, so you can
+  add it back later with Open Existing.
+- **Move to Trash…** moves its folder to the Trash after asking first, so you can still
+  put it back until you empty the Trash. If the library's Working Folder is somewhere
+  outside its folder, that stays where it is, and the confirmation says so. This isn't
+  offered for the library that's open, or for the original Default.
+- **Convert to Library Folder…**, for the original Default library, copies it into a folder
+  of its own, so it can be moved or copied like any other library, then opens that copy.
+  The original stays where it is, and in the list, until you remove it.
+
+A few things belong to DJCJ Arcade as a whole rather than to any one library, like its
+appearance and the Log. Each Log entry says which library it came from.
 
 ## Browsing, sorting, and filtering
 
@@ -434,6 +544,8 @@ sound effects for the machines the Multimedia pack covers.
 
 Select something and click **Launch**, or press **Command L**. You don't need to leave
 the list to do it, and the app always shows you what's about to run before it runs it.
+With [RetroArch support](#launching-in-retroarch) turned on, the Launch area has a MAME
+tab and a RetroArch tab, and Launch runs whichever one is showing.
 
 Next to the Launch button is a row of checkboxes and dropdowns, described fully in the
 next section. What you see there depends entirely on what you've set up in Settings →
@@ -493,7 +605,9 @@ Turning off a decision's **Ask at launch** checkbox removes it from the footer e
 for both the ticked and unticked text, and lets MAME's own settings files decide that
 question on their own instead.
 
-## Launch Codes
+## MAME Launch Codes
+
+This channel was called Launch Codes before RetroArch got one of its own.
 
 MAME reads its settings from several files, in a fixed order, and each one can override
 whatever came before it: one file for everything, then one for every machine sharing a
@@ -503,8 +617,8 @@ easy to lose track of, since the setting you're hunting for could be sitting in 
 of those files, and something further down the chain might be quietly overriding it
 without telling you.
 
-**Launch Codes** is a channel that lays this whole chain out for whichever machine is
-selected, in order, color coded, and tells you plainly which files are actually active
+**MAME Launch Codes** is a channel that lays this whole chain out for whichever machine
+is selected, in order, color coded, and tells you plainly which files are actually active
 for this machine and which ones are sitting empty. You can save several named versions
 of each file, so "vector with bigger beams" becomes a version you switch on and off
 rather than a change you make and then have to remember you made.
@@ -601,7 +715,101 @@ If you write something MAME doesn't recognize at all, the editor tells you right
 and gives you the likely reasons: a typo, an option from a version of MAME other than the
 one you have installed, or hardware you don't currently have connected.
 
+## Launching in RetroArch
+
+If you also use [RetroArch](https://www.retroarch.com), DJCJ Arcade can launch machines and
+software titles in it instead of MAME. It's off until you turn on **Enable RetroArch
+support** in Settings → RetroArch. RetroArch has to be set up already with the cores you
+want, and DJCJ Arcade never changes any of RetroArch's own settings.
+
+### Setting it up
+
+In Settings → RetroArch:
+
+- **RetroArch App** is where RetroArch is. **Choose…** picks it.
+- **Remember MAME or RetroArch for each machine**, when it's on, switches the Launch area
+  to the tab and core you last used for each machine whenever you select it. When it's
+  off, the tab stays wherever you left it.
+- **Cores** is the list of choices in the RetroArch tab's core menu, in this order. Drag to
+  reorder them, **Add** your own, or change one if RetroArch renames a core. It starts
+  with Arcade (MAME), FinalBurn Neo, MAME 2016, and MAME 2003-Plus.
+
+Each core has:
+
+- **Name**, what the core menu shows.
+- **Core**, the name RetroArch knows it by. That can be its short name, like `mame`, its
+  file name, or a full path to it.
+- **Launch With**, which is how DJCJ Arcade hands it a game. **MAME command file** is for
+  MAME's own cores: DJCJ Arcade writes a small file naming the exact machine and every ROM
+  folder you've set in Settings, so clones from a merged set, machines whose CHDs live in a
+  separate folder, and software lists all work. **ROM file** is for cores that only read a
+  single zip, like FinalBurn Neo. That's best effort: a clone in a merged set has no zip of
+  its own to hand over.
+- **ROM Folder**, optional, for a ROM set made for that core, like an FBNeo set. Left
+  blank, the core gets the ROM folders from Settings.
+- **Extra Arguments**, optional, added to RetroArch's command line as written. A
+  `--set-shader` here turns shaders on for that launch even if they're off in RetroArch.
+
+Like the rest of a library's settings, all of this belongs to the library that's open.
+
+### Launching
+
+With RetroArch support on, the Launch area has **MAME** and **RetroArch** tabs, and the
+Launch button says which one it will use: **Launch with MAME** or **Launch with
+RetroArch**. On the RetroArch tab, a **Core** menu picks which core runs the game, and a
+**Version** menu picks between the machine itself and any variants, described below. You can also skip the tabs: right-click a machine or title, or use the Machine
+menu, and choose **Launch with MAME** (Option Command L) or **Launch with RetroArch**
+(Control Command L).
+
+Games launched from DJCJ Arcade don't start paused. RetroArch normally pauses a game
+while it isn't the app in front, and when another app starts it, it can begin that way.
+DJCJ Arcade turns that off for its own launches only, without changing your RetroArch
+settings.
+
+If a launch fails, the message leads with RetroArch's own errors rather than its routine
+warnings, and offers **Switch to MAME**.
+
+Check ROMs uses the MAME installed on your Mac, so it doesn't tell you whether a RetroArch
+core has what it needs. Cores like FinalBurn Neo or MAME 2003-Plus may want ROM sets of
+their own.
+
+### Variants
+
+Some cores have hacks and other versions of a machine that MAME itself doesn't, such as
+1942c64 under 1942. A variant launches one of those in the original's place. Add them on
+the RetroArch Launch Codes channel with **Add Variant**: for a machine, type to search your
+cores' own game lists, the ones RetroArch provides, or use **Add by Hand**. For a software
+title, choose the file to use instead, which is how you'd add something like a fan
+translation.
+
+Each variant has a name and a core, which is either a specific core or **The Launch area's
+core**. The RetroArch tab's **Version** menu, beside the Core menu, lists **Original** for
+the machine itself, then its variants, then **Edit Variants…**, which takes you to the
+RetroArch Launch Codes channel. A variant set to a specific core takes the Core menu over
+while it's chosen.
+
+### RetroArch Launch Codes
+
+The RetroArch counterpart to MAME Launch Codes, a channel showing exactly what Launch with
+RetroArch will run for the selected machine or title:
+
+- **Game File**, the command file or ROM file DJCJ Arcade hands the core. A command file is
+  written fresh from your ROM folders each time you launch.
+- The settings applied on top of RetroArch's own, for that launch only: the setting that
+  keeps games from starting paused, shaders when a core's extra arguments choose one, and
+  a setting that stops RetroArch saving any of this into its own configuration.
+- **Command Line**, the full command. **Copy** also writes the files it uses, so you can
+  paste it into Terminal and run it yourself, even for something you've never launched
+  from DJCJ Arcade.
+- **Variants**, described above.
+
+When the Launch area is set to MAME, this channel says its codes aren't being used right
+now, and MAME Launch Codes does the same when it's set to RetroArch.
+
 ## Other things on the Machine menu
+
+**Launch with MAME** (Option Command L) and **Launch with RetroArch** (Control Command L)
+are here while RetroArch support is turned on.
 
 **Copy Command Line** (Shift Command C) copies the exact command that would run if you
 launched right now, including every setting from every layer of the chain and any Launch
@@ -644,6 +852,8 @@ now and then for peace of mind.
 | Shortcut | Does |
 | --- | --- |
 | Command L | Launch the selected machine or title |
+| Option Command L | Launch with MAME, when RetroArch support is on |
+| Control Command L | Launch with RetroArch, when RetroArch support is on |
 | Command O | Open With, when a title runs on more than one machine |
 | Command F | Jump to the search box |
 | Command G / Shift Command G | Find Next / Find Previous |
@@ -675,7 +885,8 @@ Full menus have more, this is just the short list of the ones you'll reach for m
 ## If something goes wrong
 
 Settings → General lets you turn on a Log of anything unusual MAME reports on launch,
-including outright failures. **Window → Log** shows it, and **Reveal Log in Finder** and
+including outright failures, and RetroArch launches that fail too. Each entry says which
+library it came from. **Window → Log** shows it, and **Reveal Log in Finder** and
 **Clear Log** are right next to it if you need to send someone the actual file or start
 fresh.
 
