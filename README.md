@@ -1,6 +1,6 @@
 # DJCJ Arcade
 
-A Mac app for browsing and playing your MAME collection, also known as a MAME font end.
+A Mac app for browsing and playing your MAME collection, also known as a MAME front end.
 
 ## What this is
 
@@ -15,7 +15,8 @@ matters most: do I actually have the files to play this one? Then you click Laun
 
 The middle of the window is a list of machines. Sort it by name, year, manufacturer, or
 whatever else you like, and stack a second sort underneath the first. Filter out the
-things you don't care about, like clones, or machines MAME can't run properly yet.
+things you don't care about, like clones, BIOS sets, or machines MAME can't run properly
+yet, and choose which columns show by right-clicking any column header.
 
 Machines that are really a platform rather than a single game, an Atari 2600 or a Game
 Boy for instance, can be opened up to show everything that ran on them. Click into the
@@ -53,22 +54,51 @@ what order in Settings.
 
 Most of that material comes from a separate media pack that the MAME community puts
 together. It is not required and the app works without it. With it, you get the artwork
-and video for most of the catalog.
+and video for most of the catalog. If yours is laid out differently from the usual
+packs, or some of it lives somewhere else, you can point each kind of artwork at its own
+location.
 
 ## Launching
 
 Select something and press Launch, or hit Command L.
 
 Along the bottom of the window are the settings you actually change often: fullscreen,
-whether to stretch the picture, artwork, and a CRT shader if you want the scanlines back.
-Set them per launch without going near a settings file.
+whether to stretch the picture, artwork, a CRT shader if you want the scanlines back, and
+cheats. Set them per launch without going near a settings file.
 
 For machines with more than one drive, a computer with a hard disk and a couple of floppy
 slots for instance, you can save a loadout: this disk in that drive, that disk in the
 other one. Give it a name, save as many as you like, and the machine starts up ready to
 go instead of making you load each piece of media by hand every time.
 
-## Launch Codes
+## RetroArch, if you use it
+
+If you also use [RetroArch](https://www.retroarch.com), DJCJ Arcade can launch games in it
+instead of MAME. Turn it on in Settings, and the Launch area gets a MAME tab and a
+RetroArch tab, with a menu to pick which RetroArch core runs the game. It can remember
+which one you used for each machine.
+
+Games run in RetroArch's MAME core get all of your ROM folders, so clones from a merged
+set and games with separate CHDs work there too. Some cores have hacks and alternate
+versions that MAME itself doesn't, and you can add those to a machine as variants and
+launch them in its place. A RetroArch Launch Codes channel shows exactly what will be
+run, with a command line you can copy.
+
+DJCJ Arcade doesn't change any of RetroArch's own settings. If you don't use RetroArch,
+none of this shows up.
+
+## Libraries
+
+Everything above lives in a library: a catalog, your collections, favorites and play
+history, and your settings. Most people only need the one, but you can make as many as
+you like, each a world of its own. That's the way to keep MAME and HBMAME, the version of
+MAME with thousands of homebrew games and hacks, apart, or to keep two versions of MAME side by side with the ROM sets to
+match.
+
+Switch between them from the menu, or from the strip at the bottom of the sidebar. Each
+library is a folder you can move, copy to another Mac, or keep on an external drive.
+
+## MAME Launch Codes
 
 This one needs a little explaining.
 
@@ -78,13 +108,13 @@ then one for the single machine you are looking at. Each layer can overrule the 
 above it. The setting you are looking for might be in any one of them, and something
 further down the stack might be canceling it out without saying so.
 
-Launch Codes lays the whole stack out for whatever machine you have selected, in order,
+MAME Launch Codes lays the whole stack out for whatever machine you have selected, in order,
 color coded, showing you which layers are actually in play and which are sitting empty.
 You can edit any of them, and save named versions of each one, so "vector with bigger
 beams" is a thing you can switch on and off rather than a change you make and then forget
 you made.
 
-![Launch Codes, showing the settings layers for one machine](screenshots/screenshot-launch-codes-01.png)
+![MAME Launch Codes, showing the settings layers for one machine](screenshots/screenshot-launch-codes-01.png)
 
 ## The settings editor
 
@@ -115,7 +145,7 @@ brew install mame
 
 That works on Intel Macs too, though it takes longer there, since Homebrew often builds
 MAME from source on an Intel Mac. Any other build of MAME works as well; just point DJCJ
-Arcade at it.
+Arcade at it. HBMAME works too, and DJCJ Arcade can install it for you the same way.
 
 **Your own ROMs.** None are included here, and none ever will be. The app will happily
 show you the whole catalog with nothing installed, so you can browse fifty thousand
@@ -171,6 +201,10 @@ MAME is its own project, run by its own people, at
 [mamedev.org](https://www.mamedev.org). This app is not affiliated with them. It reads
 their catalog and asks their software to run things, and that is the whole of the
 relationship.
+
+RetroArch and HBMAME are their own projects too, and this app isn't affiliated with
+either one. Many thanks to estefan, whose work made HBMAME available on the Mac; his blog
+is at [mameonmacs.blogspot.com](https://mameonmacs.blogspot.com).
 
 The app includes some third party components. Details and their license terms are in
 [third-party-licenses.md](third-party-licenses.md).

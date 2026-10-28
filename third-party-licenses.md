@@ -26,6 +26,18 @@ native route. Encoding, playback, audio, and everything else are Apple's own fra
 No GPL-licensed FFmpeg components (x264, x265, and similar) are included, which is what keeps
 this LGPL rather than GPL.
 
+## RetroArch logo
+
+The RetroArch logo on the RetroArch section of Settings is "Retroarch.svg" by Gameposo, from
+Wikimedia Commons, licensed under the **Creative Commons Attribution-ShareAlike 4.0
+International license (CC BY-SA 4.0)**. It is used unchanged.
+
+- Source: <https://commons.wikimedia.org/wiki/File:Retroarch.svg>
+- License: <https://creativecommons.org/licenses/by-sa/4.0/>
+
+RetroArch is a project of Libretro. DJCJ Arcade is not affiliated with or endorsed by it; the
+logo only marks the settings that launch games in RetroArch.
+
 ## ZIPFoundation
 
 MIT licensed. <https://github.com/weichsel/ZIPFoundation>
