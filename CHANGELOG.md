@@ -1,5 +1,54 @@
 # Changelog
 
+## 1.2.0 - 2026-10-28
+
+Launch in RetroArch, keep separate libraries for MAME and HBMAME, and find your artwork
+more reliably.
+
+- DJCJ Arcade can now launch machines and software in RetroArch as well as MAME. It's off
+  until you turn on Enable RetroArch support in the new Settings → RetroArch pane, which
+  is also where you choose which RetroArch cores to use. With it on, the Launch area has
+  MAME and RetroArch tabs, and the right-click menu and the Machine menu gain Launch with
+  MAME (Option Command L) and Launch with RetroArch (Control Command L)
+- RetroArch games that MAME's own cores run get every ROM folder you've set, so clones
+  from a merged set, and machines whose CHDs live in a separate folder, start properly.
+  Cores that only take a single zip, like FinalBurn Neo, are given the machine's zip
+- A new RetroArch Launch Codes channel shows exactly what will be handed to RetroArch,
+  next to the existing Launch Codes channel, which is now called MAME Launch Codes
+- RetroArch variants: hacks and alternate versions that only another core has, such as
+  1942c64 under 1942, can be added to a machine on the RetroArch Launch Codes channel
+  and picked from a new Version menu in the Launch area
+- Libraries: you can now keep completely separate libraries, each with its own catalog,
+  collections, favorites, settings, and Working Folder, so MAME and HBMAME, or two
+  different versions of MAME, never mix. Switch between them from DJCJ Arcade → Switch
+  Library…, from the library strip at the bottom of the sidebar, or by holding Option
+  while DJCJ Arcade opens. Your existing setup carries on as your first library, exactly
+  where it was
+- HBMAME can be installed and updated from inside DJCJ Arcade, the same way as MAME, from
+  Settings → MAME or when you create a new library. Thanks to estefan for the Homebrew
+  HBMAME this uses
+- A library you no longer want can be moved to the Trash from the Libraries window. It's
+  never deleted outright, so you can get it back from the Trash
+- Artwork and video that were sitting in your EXTRAs or Multimedia folder but showing as
+  missing are now found, including files named snaps.zip rather than snap.zip, zips made
+  with the Finder's Compress, and JPEG pictures
+- Settings → Assets now says why anything it can't find is missing, with a Set Location…
+  button, and the new Settings → Assets (Advanced) pane lets you point each kind of
+  artwork at its own location
+- Machine Files has a new, optional BIOS & Device ROMs folder, for ROM sets that keep
+  those files separately
+- Rebuilding the catalog no longer fails with "Not a directory" when MAME's hash folder is
+  a symbolic link
+- Choosing an app bundle such as HBMAME.app as your emulator now works, including finding
+  the SDL library inside it
+- The Working Folder's default location button now uses the right folder for the emulator
+  you've chosen, and says which one, rather than always using MAME's
+- The Setup Wizard no longer warns about a version mismatch when your ROM folder and your
+  MAME are the same version written differently, such as 0.289 and 0.289.4
+- Cancel now stops a Homebrew install of MAME or HBMAME straight away, instead of the
+  window staying stuck until the install finished on its own. The install's details can
+  now be selected and copied, with a new Copy Details button
+
 ## 1.1.1 - 2026-10-05
 
 Hide BIOS sets, choose which columns show, and see your folders when adding to a collection.
