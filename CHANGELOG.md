@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.2.1 - 2026-10-29
+
+Fixes for libraries and HBMAME.
+
+- Switching libraries could leave two copies of DJCJ Arcade running, most often when the
+  switch came from New Library…, Convert to Library Folder…, or the offer to create an
+  HBMAME library. The old copy now always quits before the new one starts, and if the quit
+  is cancelled, nothing new starts. Restoring a database backup works the same way
+- In an HBMAME library, MAME Launch Codes and the settings editor now use hbmame.ini, the
+  file HBMAME actually reads, instead of mame.ini, which it ignores. The editor's default
+  values now show up for HBMAME too. If your HBMAME Working Folder has a mame.ini but no
+  hbmame.ini, MAME Launch Codes says so and offers to copy it across as a saved version
+- With MAME and HBMAME sets in the same folder, Set Up From Folder… now picks the sets for
+  the library's own emulator. An HBMAME library no longer gets MAME's ROMs, and a MAME
+  library no longer gets HBMAME's CHDs or BIOS folder. Software lists, EXTRAs, and
+  Multimedia still come from MAME's sets, which HBMAME shares
+
 ## 1.2.0 - 2026-10-28
 
 Launch in RetroArch, keep separate libraries for MAME and HBMAME, and find your artwork
